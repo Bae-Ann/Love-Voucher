@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Love Voucher</title>
+  <title>Love Voucher </title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -17,16 +17,38 @@
       color: #d63384;
       margin-bottom: 30px;
     }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
     .voucher {
       margin: 20px auto;
-      animation: fadeIn 1s ease-in-out;
       max-width: 90%;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.2s;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .voucher:hover {
+      transform: scale(1.02);
+    }
+    /* Lightbox styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.4);
     }
   </style>
 </head>
@@ -34,20 +56,36 @@
   <h1>To My Favorite Person ❤️</h1>
   <p>Here's your exclusive love voucher collection 🫶</p>
 
-  <img class="voucher" src="2.png" />
-  <img class="voucher" src="3.png" />
-  <img class="voucher" src="4.png" />
-  <img class="voucher" src="5.png" />
-  <img class="voucher" src="6.png" />
-  <img class="voucher" src="7.png" />
-  <img class="voucher" src="8.png" />
-  <img class="voucher" src="9.png" />
-  <img class="voucher" src="10.png" />
-  <img class="voucher" src="11.png" />
+  <!-- Image gallery -->
+  <img class="voucher" src="2.png" alt="Voucher 1" onclick="openLightbox(this.src)" />
+  <img class="voucher" src="3.png" alt="Voucher 2" onclick="openLightbox(this.src)" />
+  <img class="voucher" src="4.png" alt="Voucher 3" onclick="openLightbox(this.src)" />
+  <img class="voucher" src="5.png" alt="Voucher 4" onclick="openLightbox(this.src)" />
+  <img class="voucher" src="6.png" alt="Voucher 5" onclick="openLightbox(this.src)" />
+  <img class="voucher" src="7.png" alt="Voucher 6" onclick="openLightbox(this.src)" />
+  <img class="voucher" src="8.png" alt="Voucher 7" onclick="openLightbox(this.src)" />
+  <img class="voucher" src="9.png" alt="Voucher 8" onclick="openLightbox(this.src)" />
+  <img class="voucher" src="10.png" alt="Voucher 9" onclick="openLightbox(this.src)" />
+  <img class="voucher" src="11.png" alt="Voucher 10" onclick="openLightbox(this.src)" />
 
+  <!-- Lightbox modal -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Large preview" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      lightbox.style.display = 'flex';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
 
 sql
 trigger github pages
-
