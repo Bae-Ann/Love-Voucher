@@ -44,17 +44,18 @@
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: -1;
+  z-index: 1;
 }
 .bling-star {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background-color: white;
-  border-radius: 50%;
-  box-shadow: 0 0 8px white;
-  animation: twinkle 2s infinite ease-in-out;
-  opacity: 0.8;
+   position: fixed;
+   z-index: 10;
+   width: 8px;
+   height: 8px;
+   background-color: #fff;
+   border-radius: 50%;
+   box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+   animation: twinkle 2s infinite ease-in-out;
+   opacity: 0.9;
 }
 
 @keyframes twinkle {
@@ -108,99 +109,93 @@ h1 {
   <script>
     const lightbox = GLightbox(); // 初始化 Lightbox
   </script>
+    <!-- Meteor canvas -->
   <canvas id="meteorCanvas"></canvas>
+  <script>
+    const canvas = document.getElementById('meteorCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-<script>
-  const canvas = document.getElementById('meteorCanvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+    const stars = [];
+    const meteors = [];
 
-  const stars = [];
-  const meteors = [];
-
-  for (let i = 0; i < 150; i++) {
-    stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 1.2,
-      alpha: Math.random(),
-      dx: (Math.random() - 0.5) * 0.2,
-      dy: (Math.random() - 0.5) * 0.2
-    });
-  }
-
-  function createMeteor() {
-    if (Math.random() < 0.02) {
-      meteors.push({
+    for (let i = 0; i < 150; i++) {
+      stars.push({
         x: Math.random() * canvas.width,
-        y: 0,
-        length: Math.random() * 80 + 20,
-        speed: Math.random() * 6 + 4,
-        angle: Math.PI / 4
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.2,
+        alpha: Math.random(),
+        dx: (Math.random() - 0.5) * 0.2,
+        dy: (Math.random() - 0.5) * 0.2
       });
     }
-  }
 
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // 画星星
-    stars.forEach(star => {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
-      ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-      ctx.fill();
-      star.x += star.dx;
-      star.y += star.dy;
-      if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
-      if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
-    });
-
-    // 创建流星
-    createMeteor();
-
-    // 画流星
-    for (let i = 0; i < meteors.length; i++) {
-      const m = meteors[i];
-      ctx.strokeStyle = 'rgba(255,192,203,0.8)'; // 粉色流星
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(m.x, m.y);
-      ctx.lineTo(m.x - m.length * Math.cos(m.angle), m.y - m.length * Math.sin(m.angle));
-      ctx.stroke();
-
-      m.x += m.speed * Math.cos(m.angle);
-      m.y += m.speed * Math.sin(m.angle);
-
-      if (m.x > canvas.width || m.y > canvas.height) {
-        meteors.splice(i, 1);
-        i--;
+    function createMeteor() {
+      if (Math.random() < 0.02) {
+        meteors.push({
+          x: Math.random() * canvas.width,
+          y: 0,
+          length: Math.random() * 80 + 20,
+          speed: Math.random() * 6 + 4,
+          angle: Math.PI / 4
+        });
       }
     }
 
-    requestAnimationFrame(draw);
-  }
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  draw();
-</script>
-<script>
-  // 创建 bling bling 星星
-  function createTwinkleStars(count) {
-    for (let i = 0; i < count; i++) {
-      const star = document.createElement('div');
-      star.classList.add('bling-star');
-      star.style.top = `${Math.random() * 100}vh`;
-      star.style.left = `${Math.random() * 100}vw`;
-      star.style.animationDelay = `${Math.random() * 5}s`;
-      star.style.width = `${Math.random() * 4 + 2}px`;
-      star.style.height = star.style.width;
-      document.body.appendChild(star);
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        ctx.fill();
+        star.x += star.dx;
+        star.y += star.dy;
+        if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
+        if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
+      });
+
+      createMeteor();
+
+      for (let i = 0; i < meteors.length; i++) {
+        const m = meteors[i];
+        ctx.strokeStyle = 'rgba(255,192,203,0.8)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(m.x - m.length * Math.cos(m.angle), m.y - m.length * Math.sin(m.angle));
+        ctx.stroke();
+
+        m.x += m.speed * Math.cos(m.angle);
+        m.y += m.speed * Math.sin(m.angle);
+
+        if (m.x > canvas.width || m.y > canvas.height) {
+          meteors.splice(i, 1);
+          i--;
+        }
+      }
+
+      requestAnimationFrame(draw);
     }
-  }
 
-  createTwinkleStars(50); // 想要更多闪烁就调大这个数字
-</script>
+    draw();
+  </script>
 
+  <!-- Bling stars -->
+  <script>
+    function createTwinkleStars(count) {
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.classList.add('bling-star');
+        star.style.top = `${Math.random() * 100}vh`;
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        document.body.appendChild(star);
+      }
+    }
+    createTwinkleStars(60);
+  </script>
 </body>
 </html>
