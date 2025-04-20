@@ -47,15 +47,20 @@
   z-index: 1;
 }
 .bling-star {
-   position: fixed;
-   z-index: 10;
-   width: 8px;
-   height: 8px;
-   background-color: #fff;
-   border-radius: 50%;
-   box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
-   animation: twinkle 2s infinite ease-in-out;
-   opacity: 0.9;
+  position: fixed;
+  z-index: 10;
+  width: 0;
+  height: 0;
+  color: #fffacd;
+  font-size: 12px;
+  pointer-events: none;
+  text-shadow: 0 0 8px #fff5cc, 0 0 12px #ffe680;
+  animation: twinkle 2s infinite ease-in-out;
+}
+  .bling-star::before {
+  content: "★";
+  display: block;
+  transform: scale(1.2);
 }
 
 @keyframes twinkle {
@@ -185,17 +190,18 @@ h1 {
 
   <!-- Bling stars -->
   <script>
-    function createTwinkleStars(count) {
-      for (let i = 0; i < count; i++) {
-        const star = document.createElement('div');
-        star.classList.add('bling-star');
-        star.style.top = `${Math.random() * 100}vh`;
-        star.style.left = `${Math.random() * 100}vw`;
-        star.style.animationDelay = `${Math.random() * 5}s`;
-        document.body.appendChild(star);
-      }
-    }
-    createTwinkleStars(60);
+  function createTwinkleStars(count) {
+  for (let i = 0; i < count; i++) {
+  const star = document.createElement('div');
+    star.classList.add('bling-star');
+    star.style.top = `${Math.random() * 100}vh`;
+    star.style.left = `${Math.random() * 100}vw`;
+    star.style.fontSize = `${Math.random() * 8 + 8}px`; // 8px ~ 16px
+    star.style.animationDelay = `${Math.random() * 5}s`;
+    document.body.appendChild(star);
+  }
+}
+createTwinkleStars(60);
   </script>
 </body>
 </html>
