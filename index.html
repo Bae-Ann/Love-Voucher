@@ -46,6 +46,21 @@
   pointer-events: none;
   z-index: -1;
 }
+.bling-star {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px white;
+  animation: twinkle 2s infinite ease-in-out;
+  opacity: 0.8;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
 
 h1 {
   animation: heartbeat 1.5s infinite ease-in-out;
@@ -168,6 +183,23 @@ h1 {
   }
 
   draw();
+</script>
+<script>
+  // 创建 bling bling 星星
+  function createTwinkleStars(count) {
+    for (let i = 0; i < count; i++) {
+      const star = document.createElement('div');
+      star.classList.add('bling-star');
+      star.style.top = `${Math.random() * 100}vh`;
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      star.style.width = `${Math.random() * 4 + 2}px`;
+      star.style.height = star.style.width;
+      document.body.appendChild(star);
+    }
+  }
+
+  createTwinkleStars(50); // 想要更多闪烁就调大这个数字
 </script>
 
 </body>
