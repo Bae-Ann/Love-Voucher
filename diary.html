@@ -67,25 +67,28 @@
   <h1>写给你的话 💖</h1>
   <p>你女朋友发泄情绪的小空间，留言会自动保存哟 ✨</p>
   <p>情绪有分很多种：</p>
-  <p>可能会有爱你的情绪，伤心的，生气的，无奈的......</p>
-  <textarea id="diary" placeholder="写下你的心里话吧..."></textarea><br/>
+  <p>可能会有爱你的情绪，伤心的，生气的，无奈的......</p
+
+  <p>*当你在看以下的留言 你可以不要笑我mahh 哈哈哈 我不会表达 我只想到这个方式了*
+</p>
+  <p>Let me tell u a little secret...
+其实每次我有情绪，都是因为你。
+I'm super don't like this
+所以偶尔晚上都带着小情绪跟你聊天 哈哈哈哈，
+然后很多时候我就选择去睡觉，自我消化一下...
+I know this isn’t healthy, 只是不知道如何开口，还需要时间
+
+可能是因为从小到大，我就不习惯把负面情绪表现出来，
+even 是 family 我都不会 show 自己的不开心，
+所以大家看我都像没心没肺那样 ahahah 😅
+但其实我会想很多很多，especially at night。
+然后就只能够自己一个人消化，毕竟…我也不想麻烦别人啦.</p>
+
+  <p>还有一个是因为我一开始让你去看那个艺术展，我要不知道门票多少，然后你说太贵就不要去了，我就说让你stay at home 我自己去，你就顺势的说 好吧 你自己留在家。我肯定是不开心lah 毕竟就是要跟你一起去的嘛。然后我又陷入自我反省了 就可能在想 maybe 你真的不想去 所以我才没有继续说 让你一定要去hmmmm, 过后我就才打算等以后自己再去
+</p>
+
   <button onclick="saveDiary()">保存</button>
   <button class="back-btn" onclick="window.location.href='index.html'">返回首页 🏠</button>
 
-  <script>
-    const diary = document.getElementById('diary');
-
-    // 页面加载时读取保存内容
-    window.onload = function() {
-      const saved = localStorage.getItem('loveDiary');
-      if (saved) diary.value = saved;
-    };
-
-    // 保存内容到 localStorage
-    function saveDiary() {
-      localStorage.setItem('loveDiary', diary.value);
-      alert("已保存💌（你可以随时回来继续写）");
-    }
-  </script>
 </body>
 </html>
