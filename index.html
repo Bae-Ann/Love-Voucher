@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Love Voucher</title>
+  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -49,24 +50,31 @@
   <h1>To My Favorite Person ❤️</h1>
   <p>Here's your exclusive love voucher collection 🫶</p>
   <p>How to Redeem the Voucher: </p>
-  <p>- Choose one coupon and then screenshort to your girlfriend </p>
-  <p>- Once the coupon have been use, the coupon will be deleted.</p>
+  <p>- Choose one coupon and then screenshot to your girlfriend </p>
+  <p>- Once the coupon has been used, the coupon will be deleted.</p>
 
-  <img class="voucher" src="2.png" />
-  <img class="voucher" src="3.png" />
-  <img class="voucher" src="4.png" />
-  <img class="voucher" src="5.png" />
-  <img class="voucher" src="6.png" />
-  <img class="voucher" src="7.png" />
-  <img class="voucher" src="8.png" />
-  <img class="voucher" src="9.png" />
-  <img class="voucher" src="10.png" />
-  <img class="voucher" src="11.png" />
+  <!-- 每张券都用 <a> 包住才能点击放大 -->
+  <a href="2.png" class="glightbox"><img class="voucher" src="2.png" /></a>
+  <a href="3.png" class="glightbox"><img class="voucher" src="3.png" /></a>
+  <a href="4.png" class="glightbox"><img class="voucher" src="4.png" /></a>
+  <a href="5.png" class="glightbox"><img class="voucher" src="5.png" /></a>
+  <a href="6.png" class="glightbox"><img class="voucher" src="6.png" /></a>
+  <a href="7.png" class="glightbox"><img class="voucher" src="7.png" /></a>
+  <a href="8.png" class="glightbox"><img class="voucher" src="8.png" /></a>
+  <a href="9.png" class="glightbox"><img class="voucher" src="9.png" /></a>
+  <a href="10.png" class="glightbox"><img class="voucher" src="10.png" /></a>
+  <a href="11.png" class="glightbox"><img class="voucher" src="11.png" /></a>
+
   <p>Some tips for you: I’ll secretly add new coupons whenever I feel like it~ 
      So remember to check your special space… or you’ll miss out! 🙈💕</p>
 
   <br><br>
   <button onclick="window.location.href='diary.html'">写给你的话 💌</button>
   <p>这个网页完成于20.04.2026 有小情绪的一天 还让我带着情绪睡觉的一晚 你小心在我这边一直扣分哟~</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    const lightbox = GLightbox(); // 初始化 Lightbox
+  </script>
 </body>
 </html>
