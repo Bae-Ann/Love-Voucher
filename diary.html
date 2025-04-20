@@ -5,21 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>写给你的话</title>
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #fffafc;
-      color: #333;
-      text-align: center;
-      padding: 40px;
-    }
-    <div id="love-container">
-  ❤️ 我们已经相爱了  
-  <span id="days">0</span> 天  
-  <span id="hours">0</span> 小时  
-  <span id="minutes">0</span> 分  
-  <span id="seconds">0</span> 秒啦！ 💘
-</div>
-
     h1 {
       color: #d63384;
       margin-bottom: 20px;
@@ -36,56 +21,10 @@
     .back-btn {
       background-color: #999;
     }
-    #love-container {
-  font-size: 1.4rem;
-  font-weight: bold;
-  background: linear-gradient(90deg, #ff8dc7, #ffa3b5, #ffcad4);
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: pulse 2s infinite;
-  margin: 20px auto;
-  max-width: 90%;
-  padding: 10px;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.9; }
-}
-
-body {
-  background-image: url('https://i.imgur.com/Jh3n9IE.png'); /* 可爱的淡粉爱心背景图 */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
 
   </style>
 </head>
 <body>
-  <script>
-  const startDate = new Date("2025-02-08T00:00:00");
-
-  function updateLoveTime() {
-    const now = new Date();
-    const diff = now - startDate;
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
-    document.getElementById("seconds").innerText = seconds;
-  }
-
-  setInterval(updateLoveTime, 1000);
-  updateLoveTime();
-</script>
-
   <h1>写给你的话 💖</h1>
   <p>嘻嘻嘻 我的小情绪 ✨</p>
   <p><justify>Let me tell u a little secret... 其实每次我有情绪，好像都是因为你 I'm super don't like this 所以有时候你晚上call来，
