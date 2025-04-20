@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Love Voucher </title>
+  <title>Love Voucher</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -17,95 +17,50 @@
       color: #d63384;
       margin-bottom: 30px;
     }
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-    }
     .voucher {
       margin: 20px auto;
+      animation: fadeIn 1s ease-in-out;
       max-width: 90%;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.3s;
     }
     .voucher:hover {
-      transform: scale(1.02);
+      transform: scale(1.05);
     }
-    /* Lightbox styles */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    button {
+      margin-top: 40px;
+      padding: 12px 24px;
+      background-color: #ff69b4;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
-    img.voucher {
-  image-rendering: auto;
-  -ms-interpolation-mode: bicubic;
-}
   </style>
 </head>
 <body>
   <h1>To My Favorite Person ❤️</h1>
   <p>Here's your exclusive love voucher collection 🫶</p>
-  <p>How to Redeem:</p>
-  <p>Choose one coupon, then screenshort to ur girlfriend and redeem the Love-Coupon❤️</p>
 
-  <!-- Image gallery -->
-  <img class="voucher" src="2.png" alt="Voucher 1" onclick="openLightbox(this.src)" />
-  <img class="voucher" src="3.png" alt="Voucher 2" onclick="openLightbox(this.src)" />
-  <img class="voucher" src="4.png" alt="Voucher 3" onclick="openLightbox(this.src)" />
-  <img class="voucher" src="5.png" alt="Voucher 4" onclick="openLightbox(this.src)" />
-  <img class="voucher" src="6.png" alt="Voucher 5" onclick="openLightbox(this.src)" />
-  <img class="voucher" src="7.png" alt="Voucher 6" onclick="openLightbox(this.src)" />
-  <img class="voucher" src="8.png" alt="Voucher 7" onclick="openLightbox(this.src)" />
-  <img class="voucher" src="9.png" alt="Voucher 8" onclick="openLightbox(this.src)" />
-  <img class="voucher" src="10.png" alt="Voucher 9" onclick="openLightbox(this.src)" />
-  <img class="voucher" src="11.png" alt="Voucher 10" onclick="openLightbox(this.src)" />
+  <img class="voucher" src="2.png" />
+  <img class="voucher" src="3.png" />
+  <img class="voucher" src="4.png" />
+  <img class="voucher" src="5.png" />
+  <img class="voucher" src="6.png" />
+  <img class="voucher" src="7.png" />
+  <img class="voucher" src="8.png" />
+  <img class="voucher" src="9.png" />
+  <img class="voucher" src="10.png" />
+  <img class="voucher" src="11.png" />
 
-  <!-- Lightbox modal -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="Large preview" />
-  </div>
-
-  <script>
-    function openLightbox(src) {
-      const lightbox = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
-      lightbox.style.display = 'flex';
-    }
-    function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
-  </script>
-
-  <p>Let me tell u a little secret...<p>
-<p>
-其实每次我有情绪，都是因为你。
-我明明就是一个很佛系的人，but 遇到你之后就会变得不像自己 liaoo waa 🥲
-I'm super don't like this
-所以有时候你晚上call来，我带着的情绪 基本都是因为你 别无其它
-所以很多时候我就选择去睡觉，自我消化一下...
-I know this isn’t healthy, 只是不知道如何开口，敞开心扉的话，还需要时间
-
-可能是因为从小到大，我就不习惯把负面情绪表现出来，
-even 是 family 我都不会 show 自己的不开心，
-所以大家看我都像没心没肺那样 ahahah 😅
-但其实我会想很多很多，especially at night。
-然后就只能够自己一个人消化，毕竟…我也不想麻烦别人啦。</p>
-
-  <p>这个网页完成于20.04.2026，也是你弄我生气的一天，你又让我带着情绪睡觉的一晚，小心你在我这里一直扣分哦</p>
+  <br><br>
+  <button onclick="window.location.href='diary.html'">写给你的话 💌</button>
 </body>
 </html>
