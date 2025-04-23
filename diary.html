@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh">
+  <div class="corner-tree">
+  <div class="tree-leaves"></div>
+  <div class="tree-trunk"></div>
+</div>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -61,6 +65,30 @@
     .back-btn:hover {
       background-color: #666;
     }
+    .corner-tree {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 80px;
+  z-index: 10;
+}
+
+.tree-leaves {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at 30% 30%, #a3e635, #65a30d);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(100, 200, 100, 0.3);
+}
+
+.tree-trunk {
+  width: 20px;
+  height: 40px;
+  background: linear-gradient(to bottom, #8b5a2b, #5c4033);
+  margin: -10px auto 0;
+  border-radius: 5px;
+}
+
   </style>
 </head>
 <body>
@@ -72,7 +100,7 @@
   <p>*当你在看以下的留言 你可以不要笑我mahh 哈哈哈 我不会表达 我只想到这个方式了*
 </p>
   <p>1. Let me tell u a little secret...
-其实每次我有情绪，都是因为你。
+其实每次我有情绪，都是因为你！
 I'm super don't like this
 所以偶尔晚上都带着小情绪跟你聊天 哈哈哈哈，
 然后很多时候我就选择去睡觉，自我消化一下...
