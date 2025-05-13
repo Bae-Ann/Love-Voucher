@@ -66,6 +66,14 @@
 <body>
   <h1>写给你的秘密 💖</h1>
   <p>你女朋友发泄情绪的小树洞✨</p>
+ <!-- 🌟 有新内容提醒 -->
+  <div id="newNotice" style="display:none; background:#ffeef2; padding:10px 14px; border-left: 4px solid #f06292; border-radius: 8px; color:#d63384; margin-bottom: 20px;">
+    💌 有新的留言更新了～点进来看看吧！
+  </div>
+
+    <!-- 💌 所有留言包裹在这个大容器内，用 data-time 标记最后更新时间 -->
+  <div id="latestEntry" data-time="2025-05-13T23:00:00">
+  
   <p>情绪有分很多种：</p>
   <p>可能会有爱你的情绪，伤心的，生气的，无奈的......</p>
 
@@ -116,7 +124,29 @@ I know this isn’t healthy, 只是不知道如何开口，还需要时间，所
   <p>4. 歪理</p>
 
   <p>这一页我就保存到年尾 过后就delete 了</p>
+
+      </div>
   <button class="back-btn" onclick="window.location.href='index.html'">Back to Main 🏠</button>
+
+    <!-- 🌟 检查是否有新留言逻辑 -->
+  <script>
+    // 获取留言的更新时间
+    const latestEntry = document.getElementById('latestEntry');
+    const newTime = new Date(latestEntry.dataset.time);
+
+    // 从 localStorage 获取上次读的时间
+    const lastVisit = localStorage.getItem('lastReadTime');
+    const hasNew = !lastVisit || new Date(lastVisit) < newTime;
+
+    // 显示提醒
+    if (hasNew) {
+      document.getElementById('newNotice').style.display = 'block';
+    }
+
+    // 更新本次阅读时间
+    localStorage.setItem('lastReadTime', newTime.toISOString());
+  </script>
+</body>
 
 </body>
 </html>
