@@ -14,7 +14,36 @@
       text-align: center;
       padding: 40px;
     }
+    #newNotice {
+      display: none;
+      background: #ffe0ec;
+      border: 2px dashed #ff80ab;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      color: #d81b60;
+      font-size: 1.1rem;
+      animation: pop 0.8s ease;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.9); opacity: 0; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+     button {
+      padding: 8px 16px;
+      margin: 20px 0;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff80ab;
+      color: white;
+      cursor: pointer;
+    }
 
+    button:hover {
+      background-color: #ff4081;
+    }
     h1 {
       color: #e91e63;
       font-size: 2rem;
@@ -64,8 +93,8 @@
   </style>
 </head>
 <body>
-  <!-- ✨ 新留言提示 -->
-  <div id="newNotice" data-time="">💌 你有新的留言更新了～ 快来看看吧！</div>
+  <!-- ✅ 可编辑留言时间 -->
+  <div id="newNotice" data-time="2025-05-13T15:00:00">💌 你有新的留言更新了～ 快来看看吧！</div>
   
   <h1>写给你的秘密 💖</h1>
   <p>你女朋友发泄情绪的小树洞✨</p>
@@ -125,25 +154,30 @@ I know this isn’t healthy, 只是不知道如何开口，还需要时间，所
       </div>
   <button class="back-btn" onclick="window.location.href='index.html'">Back to Main 🏠</button>
 
-<script>
-    // ⏰ 自动更新时间戳
+// 自动更新时间
     function refreshTime() {
       const now = new Date().toISOString();
       const notice = document.getElementById("newNotice");
       notice.setAttribute("data-time", now);
       localStorage.setItem("lastSeenTime", now);
       alert("留言时间戳已更新 ✅");
+      console.log("更新时间戳为", now);
     }
 
-    // 📩 页面载入时检查是否有更新
     window.addEventListener('DOMContentLoaded', () => {
       const notice = document.getElementById("newNotice");
       const newTime = notice.getAttribute("data-time");
       const lastSeen = localStorage.getItem("lastSeenTime");
 
+      console.log("当前 data-time:", newTime);
+      console.log("上次查看时间:", lastSeen);
+
       if (!lastSeen || (newTime && newTime > lastSeen)) {
         notice.style.display = "block";
+        console.log("🔔 显示新留言提示");
         localStorage.setItem("lastSeenTime", newTime);
+      } else {
+        console.log("✅ 没有新留言，不显示提示");
       }
     });
   </script>
