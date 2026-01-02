@@ -105,7 +105,30 @@ h1 {
      So remember to check your special space… or you’ll miss out! 🙈💕</p>
 
 <br><br>
-<button onclick="window.location.href='diary.html'">写给你的话2025 已完结💌</button>
+<button onclick="openDiary2025()">
+  写给你的话2025 已完结
+</button>
+
+<script>
+function openDiary2025() {
+  const pwd = prompt("这是 2025 的秘密记录，请输入密码");
+
+  if (pwd === null) {
+    // 按 Cancel
+    alert("已取消");
+    return;
+  }
+
+  if (pwd !== "01012025") {
+    alert("密码错误");
+    return;
+  }
+
+  // 密码正确才跳转
+  window.location.href = "diary2025/index.html";
+}
+</script>
+
   <button onclick="window.location.href='diary-2026.html'">
   📖 Diary 2026 </button>
 
