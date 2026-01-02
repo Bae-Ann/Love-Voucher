@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Diary 2026 🌿</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
     body {
-      font-family: 'Roboto Slab', serif;
-      background: linear-gradient(135deg, #d0f0fd, #fffbe6);
-      color: #2c2c2c;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #cce7f0, #f0fff4);
+      color: #1b3b5f;
+      margin: 0;
       padding: 40px 20px;
       display: flex;
       flex-direction: column;
@@ -19,70 +20,65 @@
     }
 
     h1 {
-      font-size: 2.2rem;
-      color: #1e88e5;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
-      text-align: center;
+      font-size: 2.8rem;
+      color: #1a73e8;
+      margin-bottom: 8px;
     }
 
-    h2 {
+    p.subtitle {
       font-size: 1.2rem;
-      color: #1565c0;
-      margin-top: 25px;
-      margin-bottom: 10px;
-      width: 90%;
-      max-width: 600px;
-      text-align: left;
+      color: #4a6572;
+      margin-bottom: 30px;
+      font-weight: 500;
     }
 
-    textarea {
+    .content {
+      max-width: 700px;
       width: 90%;
-      max-width: 600px;
-      min-height: 120px;
-      padding: 16px;
-      font-size: 1rem;
-      border-radius: 12px;
-      border: 2px solid #1e88e5;
-      margin-bottom: 20px;
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      resize: vertical;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(26, 115, 232, 0.15);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      color: #2c3e50;
+    }
+
+    .content strong {
+      color: #1a73e8;
+      font-weight: 700;
     }
 
     button {
-      padding: 12px 28px;
-      font-size: 1rem;
+      margin-top: 40px;
+      background-color: #1a73e8;
+      color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 25px;
+      padding: 14px 38px;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
-      color: #fff;
-      background-color: #1e88e5;
-      transition: background 0.3s ease;
-      margin-top: 25px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 5px 15px rgba(26, 115, 232, 0.4);
     }
 
     button:hover {
-      background-color: #1565c0;
+      background-color: #0f4ab7;
+      box-shadow: 0 7px 22px rgba(15, 74, 183, 0.6);
     }
-
-    p {
-      font-size: 1rem;
-      max-width: 600px;
-      width: 90%;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
   </style>
 </head>
 <body>
 
   <h1>Diary 2026 🌿</h1>
-  <p>记录新的年度心情✨</p>
+  <p class="subtitle">记录新的年度心情 ✨</p>
 
-  <h2>err 没想到标题>err>
-  <p>咳咳hmm 说说我的底线啊 那个日子是要celebrate的啊 不然你知道的啊 我该说的那天我说了啊 </p>>
+  <div class="content">
+    <p><strong>err</strong> 没想到标题 &gt; err &gt;</p>
+    <p>咳咳 <strong>hmm</strong> 说说我的底线啊 那个日子是要 <strong>celebrate</strong> 的啊 不然你知道的啊<br>
+    我该说的那天我说了啊</p>
+  </div>
 
   <button onclick="window.location.href='index.html'">返回主页 🏠</button>
 
