@@ -66,6 +66,14 @@
 </head>
 <body>
 
+  <script>
+  const pwd = prompt("这是 2025 的秘密记录，请输入密码");
+  if (pwd !== "01012025") {
+    document.body.innerHTML = "";
+    throw new Error("Access denied");
+  }
+</script>
+
   <h1>写给你的秘密 💖</h1>
   <p>你女朋友发泄情绪的小树洞✨</p>
 
@@ -145,7 +153,8 @@ I know this isn’t healthy, 只是不知道如何开口，还需要时间，所
   <p>这一页我就保存到年尾 过后就delete 了</p>
 
       </div>
-  <button class="back-btn" onclick="window.location.href='index.html'">Back to Main 🏠</button>
+  <button onclick="window.location.href='../index.html'">
+  Back to Main 🏠
      
 
 </body>
