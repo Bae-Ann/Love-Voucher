@@ -1,106 +1,417 @@
+```html
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Diary 2026 🌿</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Little World 🌿</title>
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #cce7f0, #f0fff4);
-      color: #1b3b5f;
-      margin: 0;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Noto+Serif+SC:wght@400;500;600&display=swap');
 
-    h1 {
-      font-size: 2.8rem;
-      color: #1a73e8;
-      margin-bottom: 8px;
-    }
+* { box-sizing: border-box; }
 
-    p.subtitle {
-      font-size: 1.2rem;
-      color: #4a6572;
-      margin-bottom: 30px;
-      font-weight: 500;
-    }
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Noto Serif SC', sans-serif;
+  background: linear-gradient(135deg, #e4f0f5, #f5faf6);
+  color: #34495e;
+  min-height: 100vh;
+}
 
-    .content {
-      max-width: 700px;
-      width: 90%;
-      background: white;
-      padding: 30px 40px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(26, 115, 232, 0.15);
-      line-height: 1.6;
-      font-size: 1.1rem;
-      color: #2c3e50;
-    }
+header {
+  text-align: center;
+  padding: 48px 20px 25px;
+}
 
-    .content strong {
-      color: #1a73e8;
-      font-weight: 700;
-    }
+h1 {
+  color: #527f91;
+  font-size: clamp(2rem, 7vw, 3rem);
+  margin: 0 0 10px;
+}
 
-    button {
-      margin-top: 40px;
-      background-color: #1a73e8;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      padding: 14px 38px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 5px 15px rgba(26, 115, 232, 0.4);
-    }
+.subtitle {
+  color: #7b929a;
+  font-size: 1rem;
+}
 
-    button:hover {
-      background-color: #0f4ab7;
-      box-shadow: 0 7px 22px rgba(15, 74, 183, 0.6);
-    }
-  </style>
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px 15px 25px;
+}
+
+nav button, .back-button {
+  border: none;
+  border-radius: 25px;
+  padding: 11px 22px;
+  background: #ffffff;
+  color: #527f91;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 3px 12px #8aaab522;
+}
+
+nav button:hover, .back-button:hover {
+  background: #d7eaf0;
+}
+
+nav button.active {
+  background: #6f9eae;
+  color: white;
+}
+
+main {
+  max-width: 900px;
+  width: 92%;
+  margin: 0 auto 40px;
+}
+
+.page { display: none; }
+.page.active { display: block; }
+
+.panel {
+  background: rgba(255,255,255,0.9);
+  border-radius: 22px;
+  padding: 25px;
+  box-shadow: 0 8px 28px #527f9112;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #527f91;
+  margin-top: 0;
+}
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.home-card {
+  border: 1px solid #e3edf0;
+  border-radius: 18px;
+  padding: 28px 20px;
+  text-align: center;
+  background: #fbfdfd;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+
+.home-card:hover {
+  transform: translateY(-4px);
+  background: #f0f8fa;
+}
+
+.home-card .emoji {
+  font-size: 2.5rem;
+}
+
+.home-card h3 {
+  color: #527f91;
+  margin-bottom: 8px;
+}
+
+.home-card p {
+  color: #82949a;
+  font-size: .95rem;
+  line-height: 1.6;
+}
+
+.travel-heading {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.travel-heading p {
+  color: #82949a;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.photo-card {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #f3f7f8;
+  cursor: pointer;
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  transition: transform .25s;
+}
+
+.photo-card:hover img {
+  transform: scale(1.04);
+}
+
+.photo-card figcaption {
+  padding: 10px 12px;
+  color: #648391;
+  font-size: .9rem;
+  background: white;
+}
+
+.diary-entry {
+  padding: 16px 0;
+  border-bottom: 1px solid #e9f0f2;
+  line-height: 1.9;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.diary-entry:last-child {
+  border-bottom: none;
+}
+
+.diary-entry::first-letter {
+  color: #527f91;
+}
+
+.actions {
+  text-align: center;
+  padding: 10px 0 35px;
+}
+
+footer {
+  text-align: center;
+  color: #91a5aa;
+  font-size: .85rem;
+  padding: 0 15px 25px;
+}
+
+/* 点击照片后放大 */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(20, 30, 38, .92);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: zoom-out;
+}
+
+#lightbox.show {
+  display: flex;
+}
+
+#lightbox img {
+  max-width: 95%;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+#lightbox .close {
+  position: absolute;
+  top: 15px;
+  right: 22px;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  header { padding-top: 35px; }
+  .panel { padding: 19px; }
+  .photo-card img { height: 210px; }
+}
+</style>
 </head>
+
 <body>
 
-  <h1>Diary 2026 🌿</h1>
-  <p class="subtitle">记录新的年度心情 ✨</p>
+<header>
+  <h1>Our Little World 🌿</h1>
+  <p class="subtitle">A little place for our memories ✨</p>
+</header>
 
-  <div class="content">
-    <p>err没想说什么 2026 继续相爱相杀 醒目一点哟！</p>
-    <p>卢俊豪 你凶我🤨😤</p>
-    <p>生气你 我还是不理解为什么要放close friend，为什么一开始你不放 到后面你才来放😡</p>
-    <p> 520 快乐 ILY </p>
-    <p> 那么久没见 你不想念你女朋友吗 可是你的女朋友想念她的男朋友eh.......</p>
-    <p> 伤心 以后有什么特别的活动 没有人陪我下KL 玩了，以后要自己去了 但是我不想在kl solo 除非我想staycation </p>
-    <p>啊啊啊啊啊啊啊 男朋友又不理我了 苍天啊 还可以要吗这个男朋友</p>
-    <p> 谢谢你送的生日餐 温馨提醒 明年请记得送花 flower </p>
-    <p>你又放close fren 😡😡😡 不要见你了 哼 </p>
-    <p>你觉得我们熬过了LDR 可是在我看来 其实我们还没有熬过 还在磨合当中 还是有很多问题在里面 
-    看似很close 可是有时候会觉得很陌生 尤其是每次我去找你后 要回的那一天 终会有一个很陌生的感觉 I dk </p>
-    <p> 改次有抽到免费的票 不要跟你讲了，每次都没有讲......</p>
-    <p> 雨天...... 听着菲道尔的歌 突然在想 有没有后悔认识彼此 </p>
-    <p> 没有小气 只是很多东西不是一天两天发生 也难以开口的说 不知道 600多天 我还是感觉我们不是很熟 还是有一道跨不过去的墙
-    那个墙 是什么 我也不知道 或许是由很多琐碎的事情叠起来 也有可能我们从来没有真正的聊过一次 因为平时的聊天 都是普通的事情</p>
+<nav>
+  <button class="active" data-page="home" onclick="showPage('home')">🏠 Home</button>
+  <button data-page="travel" onclick="showPage('travel')">✈️ Travel</button>
+  <button data-page="diary" onclick="showPage('diary')">💌 Diary</button>
+</nav>
 
-    <p>我想把这个diary弄美一点 可是我的技术有限 你何时有时间 不然我就要把这个diary private掉了 不要再用了</p>
-    <p> 我没有想过会有一天可以和男朋友去旅行 虽然trip 麻麻地 可是还是喜欢跟你去explore的 前提是可以不要跟团 你可以把跟团的trip 放去你的family trip 
-    公平一点 你去familytrip 的地方 我就去自由行 这样就不会吵架了 我不反对每个人旅行的方式不一样 但是我们要找对一个平衡 否则未来 还是会吵架 最后 我们就不用旅行了
-    就好像你喜欢跟团的原因是 给钱 然后不需要自己plan 不需要想交通 可是我喜欢的旅行方式是 自己走 自己探索 就算累 也累的开心 回忆会有很多 可以慢慢的在一个地方逛 不需要赶行程
-    所以在这边 我们就会有很大的意见 所以这个问题 还是要找出答案</p>
-    <p>我还是很想来一场solo trip 即使不可以去国外 malaysia 也可以 这个是我其中一个bucket list </p>
-    <p> 今年好像也是过得特别快 感觉也没有呆在一起很久 （抛开贵阳trip）就要过完2026年了</p>
+<main>
+
+  <!-- HOME -->
+  <section id="home" class="page active">
+    <div class="panel">
+      <h2 style="text-align:center;">Welcome to our little world 🤍</h2>
+      <p style="text-align:center;line-height:1.8;color:#82949a;">
+        A little collection of places we've been,<br>
+        memories we've made, and things I want to remember.
+      </p>
+    </div>
+
+    <div class="home-cards">
+      <div class="home-card" onclick="showPage('travel')">
+        <div class="emoji">✈️</div>
+        <h3>Our Travels</h3>
+        <p>Little adventures, beautiful places, and memories together.</p>
+        <span>Explore memories →</span>
+      </div>
+
+      <div class="home-card" onclick="showPage('diary')">
+        <div class="emoji">💌</div>
+        <h3>My Diary</h3>
+        <p>My little thoughts, feelings, and words for you.</p>
+        <span>Read my diary →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAVEL -->
+  <section id="travel" class="page">
+    <div class="panel">
+      <div class="travel-heading">
+        <h2>Our Travel Memories ✈️</h2>
+        <p>Every trip has a little story of its own.</p>
+      </div>
+
+      <h3 style="color:#648b9b;">📍 Guiyang · 贵阳</h3>
+      <p style="color:#82949a;line-height:1.8;">
+        A little trip, a little adventure, and memories worth keeping. 🤍
+      </p>
+
+      <div class="photo-grid">
+
+        <figure class="photo-card" onclick="openPhoto('GY1.jpeg')">
+          <img src="GY1.jpeg" alt="Guiyang memory 1" loading="lazy">
+          <figcaption>Guiyang memories ♡ 01</figcaption>
+        </figure>
+
+        <figure class="photo-card" onclick="openPhoto('GY2.jpeg')">
+          <img src="GY2.jpeg" alt="Guiyang memory 2" loading="lazy">
+          <figcaption>Guiyang memories ♡ 02</figcaption>
+        </figure>
+
+        <figure class="photo-card" onclick="openPhoto('GY3.jpeg')">
+          <img src="GY3.jpeg" alt="Guiyang memory 3" loading="lazy">
+          <figcaption>Guiyang memories ♡ 03</figcaption>
+        </figure>
+
+        <figure class="photo-card" onclick="openPhoto('GY4.jpeg')">
+          <img src="GY4.jpeg" alt="Guiyang memory 4" loading="lazy">
+          <figcaption>Guiyang memories ♡ 04</figcaption>
+        </figure>
+
+        <figure class="photo-card" onclick="openPhoto('GY5.jpeg')">
+          <img src="GY5.jpeg" alt="Guiyang memory 5" loading="lazy">
+          <figcaption>Guiyang memories ♡ 05</figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DIARY -->
+  <section id="diary" class="page">
+    <div class="panel">
+      <div style="text-align:center;margin-bottom:25px;">
+        <h2>Diary 2026 🌿</h2>
+        <p style="color:#82949a;">记录新的年度心情 ✨</p>
+      </div>
+
+      <div class="diary-entry">err没想说什么 2026 继续相爱相杀 醒目一点哟！</div>
+
+      <div class="diary-entry">卢俊豪 你凶我🤨😤</div>
+
+      <div class="diary-entry">生气你 我还是不理解为什么要放close friend，为什么一开始你不放 到后面你才来放😡</div>
+
+      <div class="diary-entry">520 快乐 ILY</div>
+
+      <div class="diary-entry">那么久没见 你不想念你女朋友吗 可是你的女朋友想念她的男朋友eh.......</div>
+
+      <div class="diary-entry">伤心 以后有什么特别的活动 没有人陪我下KL 玩了，以后要自己去了 但是我不想在kl solo 除非我想staycation</div>
+
+      <div class="diary-entry">啊啊啊啊啊啊啊 男朋友又不理我了 苍天啊 还可以要吗这个男朋友</div>
+
+      <div class="diary-entry">谢谢你送的生日餐 温馨提醒 明年请记得送花 flower</div>
+
+      <div class="diary-entry">你又放close fren 😡😡😡 不要见你了 哼</div>
+
+      <div class="diary-entry">你觉得我们熬过了LDR 可是在我看来 其实我们还没有熬过 还在磨合当中 还是有很多问题在里面
+看似很close 可是有时候会觉得很陌生 尤其是每次我去找你后 要回的那一天 终会有一个很陌生的感觉 I dk</div>
+
+      <div class="diary-entry">改次有抽到免费的票 不要跟你讲了，每次都没有讲......</div>
+
+      <div class="diary-entry">雨天...... 听着菲道尔的歌 突然在想 有没有后悔认识彼此</div>
+
+      <div class="diary-entry">没有小气 只是很多东西不是一天两天发生 也难以开口的说 不知道 600多天 我还是感觉我们不是很熟 还是有一道跨不过去的墙
+那个墙 是什么 我也不知道 或许是由很多琐碎的事情叠起来 也有可能我们从来没有真正的聊过一次 因为平时的聊天 都是普通的事情</div>
+
+      <div class="diary-entry">我想把这个diary弄美一点 可是我的技术有限 你何时有时间 不然我就要把这个diary private掉了 不要再用了</div>
+
+      <div class="diary-entry">我没有想过会有一天可以和男朋友去旅行 虽然trip 麻麻地 可是还是喜欢跟你去explore的 前提是可以不要跟团 你可以把跟团的trip 放去你的family trip
+公平一点 你去familytrip 的地方 我就去自由行 这样就不会吵架了 我不反对每个人旅行的方式不一样 但是我们要找对一个平衡 否则未来 还是会吵架 最后 我们就不用旅行了
+就好像你喜欢跟团的原因是 给钱 然后不需要自己plan 不需要想交通 可是我喜欢的旅行方式是 自己走 自己探索 就算累 也累的开心 回忆会有很多 可以慢慢的在一个地方逛 不需要赶行程
+所以在这边 我们就会有很大的意见 所以这个问题 还是要找出答案</div>
+
+      <div class="diary-entry">我还是很想来一场solo trip 即使不可以去国外 malaysia 也可以 这个是我其中一个bucket list</div>
+
+      <div class="diary-entry">今年好像也是过得特别快 感觉也没有呆在一起很久 （抛开贵阳trip）就要过完2026年了</div>
+    </div>
+  </section>
+
+  <div class="actions">
+    <button class="back-button" onclick="window.location.href='index.html'">
+      ← 返回主主页 🏠
+    </button>
   </div>
 
-  <button onclick="window.location.href='index.html'">返回主页 🏠</button>
+</main>
+
+<footer>Made with love, for our little world ♡</footer>
+
+<div id="lightbox" onclick="closePhoto()">
+  <span class="close" aria-label="Close">&times;</span>
+  <img id="lightbox-img" src="" alt="Enlarged travel memory">
+</div>
+
+<script>
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(section => {
+    section.classList.remove('active');
+  });
+
+  document.getElementById(page).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(button => {
+    button.classList.toggle('active', button.dataset.page === page);
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openPhoto(src) {
+  const lightbox = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = src;
+  lightbox.classList.add('show');
+}
+
+function closePhoto() {
+  document.getElementById('lightbox').classList.remove('show');
+}
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') closePhoto();
+});
+</script>
 
 </body>
 </html>
+```
