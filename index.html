@@ -1,161 +1,372 @@
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Love Voucher</title>
-  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Love Voucher ❤️</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"
+    rel="stylesheet"
+  >
+
   <style>
-    
+    /* ===== 基本页面 ===== */
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       background: #fff0f5;
       color: #333;
       text-align: center;
       padding: 20px;
+      margin: 0;
+      min-height: 100vh;
+      box-sizing: border-box;
+      transition: background 0.8s ease, color 0.8s ease;
     }
+
     h1 {
       font-size: 2rem;
       color: #d63384;
       margin-bottom: 30px;
+      animation: heartbeat 1.5s infinite ease-in-out;
+      transition: color 0.8s ease;
     }
-    .voucher {
-      margin: 20px auto;
-      animation: fadeIn 1s ease-in-out;
-      max-width: 90%;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .voucher:hover {
-      transform: scale(1.05);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.12); }
-}
-#meteorCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-.bling-star {
-  position: fixed;
-  z-index: 10;
-  width: 0;
-  height: 0;
-  color: #fffef5;
-  font-size: 12px;
-  pointer-events: none;
-  text-shadow: 0 0 8px #fff5cc, 0 0 12px #ffe680;
-  animation: twinkle 2s infinite ease-in-out;
-}
-  .bling-star::before {
-  content: "★";
-  display: block;
-  transform: scale(1.2);
-}
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.5); }
-}
-
-h1 {
-  animation: heartbeat 1.5s infinite ease-in-out;
-}
+    p {
+      position: relative;
+      z-index: 2;
+      transition: color 0.8s ease;
+    }
 
     button {
-      margin-top: 40px;
+      position: relative;
+      z-index: 2;
+      margin: 15px 8px;
       padding: 12px 24px;
       background-color: #ff69b4;
       color: white;
       font-size: 1rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 20px;
       cursor: pointer;
+      transition: background 0.8s ease, color 0.8s ease;
     }
-    
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    /* ===== 恋爱天数 ===== */
+    .love-counter {
+      position: relative;
+      z-index: 2;
+      margin: 25px auto;
+      padding: 20px 15px;
+      max-width: 320px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(214, 51, 132, 0.2);
+      border-radius: 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: background 0.8s ease, border 0.8s ease;
+    }
+
+    .love-title {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .love-days {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #d63384;
+      transition: color 0.8s ease;
+    }
+
+    .love-note {
+      font-size: 0.85rem;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    /* ===== 日记按钮 ===== */
+    .diary-buttons {
+      position: relative;
+      z-index: 2;
+      margin: 20px auto;
+    }
+
+    /* ===== 流星背景 ===== */
+    #meteorCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ===== 闪闪星星 ===== */
+    .bling-star {
+      position: fixed;
+      z-index: 1;
+      color: #fffef5;
+      font-size: 12px;
+      pointer-events: none;
+      text-shadow: 0 0 8px #fff5cc, 0 0 12px #ffe680;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    .bling-star::before {
+      content: "★";
+      display: block;
+      transform: scale(1.2);
+    }
+
+    /* ===== 动画 ===== */
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.08);
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    /* ===== 全自动夜晚模式 ===== */
+    body.night-mode {
+      background: #171725;
+      color: #eeeeff;
+    }
+
+    body.night-mode h1 {
+      color: #ff9acb;
+    }
+
+    body.night-mode p {
+      color: #eeeeff;
+    }
+
+    body.night-mode .love-counter {
+      background: rgba(43, 43, 65, 0.92);
+      border-color: #6c5b7b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    body.night-mode .love-days {
+      color: #ff9acb;
+    }
+
+    body.night-mode button {
+      background-color: #6c5b7b;
+      color: #ffffff;
+    }
+
+    body.night-mode .bling-star {
+      color: #e6dcff;
+      text-shadow: 0 0 8px #c5b8ff, 0 0 14px #8b7aff;
+    }
+
+    /* ===== 手机屏幕 ===== */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      .love-counter {
+        max-width: 290px;
+      }
+
+      button {
+        font-size: 0.95rem;
+      }
+    }
   </style>
 </head>
+
 <body>
+
   <h1>To My Favorite Person ❤️</h1>
+
   <p>Here's your exclusive love voucher collection 🫶</p>
-  <p>How to Redeem the Voucher: </p>
-  <p>- Choose one coupon and then screenshort to your girlfriend </p>
+
+  <p>How to Redeem the Voucher:</p>
+
+  <p>- Choose one coupon and then screenshot to your girlfriend</p>
+
   <p>- Once the coupon has been used, the coupon will be deleted.</p>
 
-<br><br>
-<button onclick="openDiary2025()">
-  写给你的话2025 已完结
-</button>
+  <!-- 💗 恋爱天数 -->
+  <div class="love-counter">
+    <div class="love-title">💗 我们已经在一起</div>
 
-<script>
-function openDiary2025() {
-  const pwd = prompt("这是 2025 的秘密记录，请输入密码");
+    <div class="love-days">
+      <span id="loveDays">计算中...</span> 天
+    </div>
 
-  if (pwd === null) {
-    // 按 Cancel
-    alert("已取消");
-    return;
-  }
+    <div class="love-note">
+      从 2025 年 2 月 8 日开始<br>
+      每一天都喜欢你 🫶
+    </div>
+  </div>
 
-  if (pwd !== "01012025") {
-    alert("密码错误");
-    return;
-  }
+  <!-- 📖 日记入口 -->
+  <div class="diary-buttons">
 
-  // 密码正确才跳转
-  window.location.href = "diary.html";
-}
-</script>
+    <button onclick="openDiary2025()">
+      写给你的话 2025 已完结
+    </button>
 
-  <button onclick="window.location.href='diary-2026.html'">
-  📖 Diary 2026 </button>
+    <button onclick="window.location.href='diary-2026.html'">
+      📖 Diary 2026
+    </button>
 
-  
-  <p>这个网页完成于20.04.2025 有小情绪的一天 还让我带着情绪睡觉的一晚 你小心在我这边一直扣分哟~</p>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <p>
+    这个网页完成于20.04.2025 有小情绪的一天
+    还让我带着情绪睡觉的一晚
+    你小心在我这边一直扣分哟~
+  </p>
+
+  <!-- 🌙 2025 日记密码 -->
   <script>
-    const lightbox = GLightbox(); // 初始化 Lightbox
+    function openDiary2025() {
+      const pwd = prompt("这是 2025 的秘密记录，请输入密码");
+
+      if (pwd === null) {
+        alert("已取消");
+        return;
+      }
+
+      if (pwd !== "01012025") {
+        alert("密码错误");
+        return;
+      }
+
+      window.location.href = "diary.html";
+    }
   </script>
-    <!-- Meteor canvas -->
-  <canvas id="meteorCanvas"></canvas>
+
+  <!-- 💗 恋爱天数自动计算 -->
   <script>
-    const canvas = document.getElementById('meteorCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function updateLoveDays() {
+      const parts = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Kuala_Lumpur",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric"
+      }).formatToParts(new Date());
 
-    const stars = [];
-    const meteors = [];
+      const dateParts = {};
 
-    for (let i = 0; i < 150; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.2,
-        alpha: Math.random(),
-        dx: (Math.random() - 0.5) * 0.2,
-        dy: (Math.random() - 0.5) * 0.2
+      parts.forEach(part => {
+        if (part.type !== "literal") {
+          dateParts[part.type] = Number(part.value);
+        }
       });
+
+      const todayUTC = Date.UTC(
+        dateParts.year,
+        dateParts.month - 1,
+        dateParts.day
+      );
+
+      const startUTC = Date.UTC(2025, 1, 8);
+
+      const days = Math.floor(
+        (todayUTC - startUTC) / (1000 * 60 * 60 * 24)
+      );
+
+      document.getElementById("loveDays").textContent =
+        days >= 0 ? days : "还没开始";
     }
 
+    updateLoveDays();
+
+    // 每分钟更新一次恋爱天数
+    setInterval(updateLoveDays, 60000);
+  </script>
+
+  <!-- 🌙 根据马来西亚时间全自动切换主题 -->
+  <script>
+    function updateThemeByTime() {
+      const hour = Number(
+        new Intl.DateTimeFormat("en-MY", {
+          timeZone: "Asia/Kuala_Lumpur",
+          hour: "2-digit",
+          hourCycle: "h23"
+        }).format(new Date())
+      );
+
+      // 晚上 7 点至早上 6:59 为夜晚模式
+      const isNight = hour >= 19 || hour < 7;
+
+      document.body.classList.toggle("night-mode", isNight);
+    }
+
+    // 打开网页时立即判断
+    updateThemeByTime();
+
+    // 每分钟检查一次，完全自动切换
+    setInterval(updateThemeByTime, 60000);
+  </script>
+
+  <!-- ✨ 流星背景 -->
+  <canvas id="meteorCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById("meteorCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let stars = [];
+    let meteors = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      stars = [];
+
+      for (let i = 0; i < 100; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.2,
+          alpha: Math.random(),
+          dx: (Math.random() - 0.5) * 0.2,
+          dy: (Math.random() - 0.5) * 0.2
+        });
+      }
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
     function createMeteor() {
-      if (Math.random() < 0.02) {
+      if (Math.random() < 0.015) {
         meteors.push({
           x: Math.random() * canvas.width,
           y: 0,
-          length: Math.random() * 80 + 20,
-          speed: Math.random() * 6 + 4,
+          length: Math.random() * 60 + 20,
+          speed: Math.random() * 4 + 3,
           angle: Math.PI / 4
         });
       }
@@ -164,26 +375,49 @@ function openDiary2025() {
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // 小星星
       stars.forEach(star => {
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+        ctx.arc(
+          star.x,
+          star.y,
+          star.radius,
+          0,
+          2 * Math.PI
+        );
+
         ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
         ctx.fill();
+
         star.x += star.dx;
         star.y += star.dy;
-        if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
-        if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
+
+        if (star.x < 0 || star.x > canvas.width) {
+          star.dx *= -1;
+        }
+
+        if (star.y < 0 || star.y > canvas.height) {
+          star.dy *= -1;
+        }
       });
 
       createMeteor();
 
-      for (let i = 0; i < meteors.length; i++) {
+      // 流星
+      for (let i = meteors.length - 1; i >= 0; i--) {
         const m = meteors[i];
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
         ctx.lineWidth = 2;
         ctx.beginPath();
+
         ctx.moveTo(m.x, m.y);
-        ctx.lineTo(m.x - m.length * Math.cos(m.angle), m.y - m.length * Math.sin(m.angle));
+
+        ctx.lineTo(
+          m.x - m.length * Math.cos(m.angle),
+          m.y - m.length * Math.sin(m.angle)
+        );
+
         ctx.stroke();
 
         m.x += m.speed * Math.cos(m.angle);
@@ -191,7 +425,6 @@ function openDiary2025() {
 
         if (m.x > canvas.width || m.y > canvas.height) {
           meteors.splice(i, 1);
-          i--;
         }
       }
 
@@ -201,20 +434,24 @@ function openDiary2025() {
     draw();
   </script>
 
-  <!-- Bling stars -->
+  <!-- ✨ 闪闪星星 -->
   <script>
-  function createTwinkleStars(count) {
-  for (let i = 0; i < count; i++) {
-  const star = document.createElement('div');
-    star.classList.add('bling-star');
-    star.style.top = `${Math.random() * 100}vh`;
-    star.style.left = `${Math.random() * 100}vw`;
-    star.style.fontSize = `${Math.random() * 8 + 8}px`; // 8px ~ 16px
-    star.style.animationDelay = `${Math.random() * 5}s`;
-    document.body.appendChild(star);
-  }
-}
-createTwinkleStars(10);
+    function createTwinkleStars(count) {
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement("div");
+
+        star.classList.add("bling-star");
+        star.style.top = `${Math.random() * 100}vh`;
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.fontSize = `${Math.random() * 8 + 8}px`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+
+        document.body.appendChild(star);
+      }
+    }
+
+    createTwinkleStars(8);
   </script>
+
 </body>
 </html>
